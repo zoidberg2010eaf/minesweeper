@@ -1,5 +1,6 @@
 <launch>
- <param name="joy_node/dev" type="string" value="/dev/input/js2"/>
- <node name="xbox" pkg="minesweeper_control" type="joy_teleop.py"/>
- <node name="joy_node" pkg="joy" type="joy_node"/>
+  <arg name="port" default="/dev/input/js2"/>
+  <param name="joy_node/dev" type="string" value="$(arg port)"/>
+  <node name="xbox" pkg="minesweeper_control" type="joy_teleop.py"/>
+  <node name="joy_node" pkg="joy" type="joy_node"/>
 </launch>

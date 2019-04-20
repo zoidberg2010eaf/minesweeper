@@ -1,8 +1,0 @@
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/./_setup_util.py
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/./setup.zsh
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/./setup.bash
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/./env.sh
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/./setup.sh
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/lib/pkgconfig/catkin_tools_prebuild.pc
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
-Symlinking /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake

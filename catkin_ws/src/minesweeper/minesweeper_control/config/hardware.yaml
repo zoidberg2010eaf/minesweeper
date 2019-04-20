@@ -1,4 +1,0 @@
-hardware_interface:
-  loop_hz: 10
-  joints:
-    - fl_joint

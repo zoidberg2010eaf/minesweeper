@@ -1,0 +1,8 @@
+prefix=/home/joe/catkin_ws/src/minesweeper/minesweeper_control/install
+
+Name: catkin_tools_prebuild
+Description: Description of catkin_tools_prebuild
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/joe/catkin_ws/src/minesweeper/minesweeper_control/install/lib 
+Requires: 

@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="minesweeper_base" type="minesweeper_base_node" name="minesweeper_node">
+        <rosparam subst_value="true">
+            control_frequency: 10.0
+        </rosparam>
+    </node>
+  <include file="$(find husky_control)/launch/control.launch" />
+</launch>

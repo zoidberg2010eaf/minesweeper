@@ -1,0 +1,6 @@
+devel_space: /home/joe/catkin_ws/src/minesweeper/minesweeper_control/devel
+install: false
+install_space: /home/joe/catkin_ws/src/minesweeper/minesweeper_control/install
+profile: default
+source_space: /home/joe/catkin_ws/src/minesweeper/minesweeper_control/src
+workspace: /home/joe/catkin_ws/src/minesweeper/minesweeper_control

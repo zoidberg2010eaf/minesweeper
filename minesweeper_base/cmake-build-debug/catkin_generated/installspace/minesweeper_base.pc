@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: minesweeper_base
+Description: Description of minesweeper_base
+Version: 0.0.0
+Cflags: -I/usr/local/include -I/usr/include
+Libs: -L/usr/local/lib -lminesweeper_base /usr/lib/x86_64-linux-gnu/libboost_chrono.so /usr/lib/x86_64-linux-gnu/libboost_system.so
+Requires: controller_interface controller_manager hardware_interface pluginlib roscpp rospy sensor_msgs std_msgs

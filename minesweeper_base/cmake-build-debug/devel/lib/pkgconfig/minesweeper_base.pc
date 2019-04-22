@@ -1,0 +1,8 @@
+prefix=/home/joe/catkin_ws/src/minesweeper/minesweeper_base/cmake-build-debug/devel
+
+Name: minesweeper_base
+Description: Description of minesweeper_base
+Version: 0.0.0
+Cflags: -I/home/joe/catkin_ws/src/minesweeper/minesweeper_base/include -I/usr/include
+Libs: -L/home/joe/catkin_ws/src/minesweeper/minesweeper_base/cmake-build-debug/devel/lib -lminesweeper_base /usr/lib/x86_64-linux-gnu/libboost_chrono.so /usr/lib/x86_64-linux-gnu/libboost_system.so
+Requires: controller_interface controller_manager hardware_interface pluginlib roscpp rospy sensor_msgs std_msgs

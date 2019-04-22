@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/joe/catkin_ws/src/minesweeper/minesweeper_control/install/setup.sh

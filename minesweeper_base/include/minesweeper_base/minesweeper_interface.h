@@ -22,11 +22,12 @@ class MinesweeperHardware : public hardware_interface::RobotHW{
 public:
     MinesweeperHardware(ros::NodeHandle nh, ros::NodeHandle private_nh, double control_freq);
     void read(const ros::Duration &period);
-    void write(double* l, double* r);
-    
+    void write(ros::NodeHandle &nh);
+    //double l, r;
 
 private:
     ros::NodeHandle nh_, private_nh_;
+    //ros::Publisher left_cmd, right_cmd;
     //ros::Publisher left_cmd, right_cmd;
     //std_msgs::Float32 left, right;
     hardware_interface::JointStateInterface joint_state_interface_;

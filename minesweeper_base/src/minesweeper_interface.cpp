@@ -38,6 +38,7 @@
             nh_(nh), private_nh_(private_nh) {
         calculatePositionOffset();
         registerInterfaces();
+
     }
 
     void MinesweeperHardware::registerInterfaces() {
@@ -83,40 +84,43 @@
         }
     }
 
-    void MinesweeperHardware::write(double* l, double* r) {
+    void MinesweeperHardware::write(ros::NodeHandle& nh) {
         double left_cmd_vel = radsToRPM(joints_[0].cmd);
         double right_cmd_vel = radsToRPM(joints_[1].cmd);
+        left_cmd = nh.advertise<std_msgs::Float32>("left_cmd", 1000);
+        right_cmd = nh.advertise<std_msgs::Float32>("right_cmd", 1000);
         //code that publishes the cmd velocity
         left.data = joints_[0].cmd;
         right.data = joints_[1].cmd;
-        *l = left.data;
-        *r = right.data;
-        //std::cout << *l << std::endl;
+        //*l = left.data;
+        //*r = right.data;
+        //left.data = test_l;
+        //right.data = test_r;
+        left_cmd.publish(left);
+        //std::cout << left << std::endl;
         //left_cmd.publish(left);
-        //right_cmd.publish(right);
+        right_cmd.publish(right);
     }
 
     void controlLoop(MinesweeperHardware &robot, controller_manager::ControllerManager &cm,
-                     time_source::time_point &last_time) {
+                     time_source::time_point &last_time, ros::NodeHandle& nh) {
         time_source::time_point current_time = time_source::now();
         boost::chrono::duration<double> elapsed_duration = current_time - last_time;
         ros::Duration elapsed(elapsed_duration.count());
         last_time = current_time;
         robot.read(elapsed);
         cm.update(ros::Time::now(), elapsed);
-        robot.write(&test_l, &test_r);
-        std::cout << test_l << std::endl;
-        left.data = test_l;
-        right.data = test_r;
-        //left_cmd.publish(left);
+        robot.write(nh);
+        //std::cout << robot.l << std::endl;
+
         //right_cmd.publish(right);
     }
 
     int main(int argc, char *argv[]) {
         ros::init(argc, argv, "minesweeper_base");
         ros::NodeHandle nh, private_nh("~");
-        ros::Publisher left_cmd = nh.advertise<std_msgs::Float32>("left_cmd", 1000);
-        ros::Publisher right_cmd = nh.advertise<std_msgs::Float32>("right_cmd", 1000);
+        //ros::Publisher left_cmd = nh.advertise<std_msgs::Float32>("left_cmd", 1000);
+        //ros::Publisher right_cmd = nh.advertise<std_msgs::Float32>("right_cmd", 1000);
 
         //ros::Subscriber fl_sub = nh.subscribe("front_left_wheel", 1000, frontLeftJointCB);
         ros::Subscriber joint_positions_sub = nh.subscribe("joint_positions", 1000, jointPositionsCB);
@@ -133,7 +137,7 @@
         time_source::time_point last_time = time_source::now();
         ros::TimerOptions control_timer(
                 ros::Duration(1 / control_frequency),
-                boost::bind(controlLoop, boost::ref(robot), boost::ref(cm), boost::ref(last_time)),
+                boost::bind(controlLoop, boost::ref(robot), boost::ref(cm), boost::ref(last_time), boost::ref(nh)),
                 &robot_queue);
         ros::Timer control_loop = nh.createTimer(control_timer);
         robot_spinner.start();

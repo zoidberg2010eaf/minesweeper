@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="wheel" xmlns:xacro="https://github.com/zoidberg2010eaf/minesweeper">
+    <xacro:macro name="wheel" params="prefix angle *joint_origin">
+      <link name="${prefix}_wheel_link">
+          <visual>
+              <geometry>
+                  <mesh filename="package://minesweeper_description/meshes/wheel.STL"/>
+              </geometry>
+              <origin xyz="0.0 0.0 0.0" rpy="0 0 ${radians(angle)}"/>
+              <material name="black">
+                  <color rgba="0.05 0.05 0.05 1.0"/>
+              </material>
+          </visual>
+          <collision>
+              <geometry>
+                  <cylinder radius="0.17" length="0.11"/>
+              </geometry>
+              <origin xyz="0.0 0.0 0.0" rpy="0 ${radians(90)} ${radians(90)}"/>
+          </collision>
+          <inertial>
+            <!--<origin xyz="0.17982 0.32146 0.02496" rpy="0 0 0"/>-->
+            <mass value="3.1041" />
+            <inertia ixx="9.0731E-05" ixy="4.2946E-13" ixz="-6.6251E-14" iyy="2.038E-07" iyz="1.3211E-06" izz="9.0527E-05"/>
+          </inertial>
+      </link>
+      <joint name="${prefix}_wheel" type="continuous">
+          <parent link="base_link"/>
+          <child link="${prefix}_wheel_link"/>
+          <axis xyz="0 1 0"/>
+          <xacro:insert_block name="joint_origin"/>
+      </joint>
+      <transmission name="${prefix}_wheel_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${prefix}_wheel">
+            <hardwareInterface>VelocityJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="${prefix}_wheel_actuator">
+            <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+      </transmission>
+    </xacro:macro>
+</robot>

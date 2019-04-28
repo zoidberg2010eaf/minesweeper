@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot name="wheel" xmlns:xacro="https://github.com/zoidberg2010eaf/minesweeper">
+    <xacro:arg name="robot_namespace" default="/" />
+    <xacro:include filename="$(find minesweeper_description)/urdf/wheel.urdf.xacro"/>
+    <link
+      name="base_link">
+      <inertial>
+        <origin xyz="-0.00054987 4.6355E-06 0.05045" rpy="0 0 0" />
+        <mass value="23.176" />
+        <inertia ixx="0.51234" ixy="0.0011009" ixz="-1.5952E-05" iyy="0.43777" iyz="-4.7203E-06" izz="0.9102"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://urdf_test/meshes/base_link.STL" />
+        </geometry>
+        <material name="yellow">
+          <color rgba="1.0 0.8 0.0 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.75 0.50 0.15"/>
+        </geometry>
+      </collision>
+    </link>
+    <link name="base_footprint"/>
+    <joint name="base_footprint_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="base_link" />
+      <child link="base_footprint" />
+    </joint>
+    <xacro:wheel prefix="front_left" angle="0.0">
+      <origin xyz="0.181 0.320 0.025"/>
+    </xacro:wheel>
+    <xacro:wheel prefix="front_right" angle="180.0">
+      <origin xyz="0.181 -0.320 0.025"/>
+    </xacro:wheel>
+    <xacro:wheel prefix="rear_left" angle="0.0">
+      <origin xyz="-0.181 0.320 0.025"/>
+    </xacro:wheel>
+    <xacro:wheel prefix="rear_right" angle="180.0">
+      <origin xyz="-0.181 -0.320 0.025"/>
+    </xacro:wheel>
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>$(arg robot_namespace)</robotNamespace>
+      </plugin>
+    </gazebo>
+</robot>

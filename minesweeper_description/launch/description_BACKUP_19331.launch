@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+=======
+<?xml version="1.0"?>
+>>>>>>> 3241a9a89be168947bc4034fc9af0a6a4008f160
+<launch>
+  <arg name="robot_namespace" default="/"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find minesweeper_description)/urdf/minesweeper.urdf.xacro' --inorder"/>
+</launch>

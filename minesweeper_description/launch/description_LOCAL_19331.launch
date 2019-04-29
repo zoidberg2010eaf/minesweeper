@@ -1,0 +1,4 @@
+<launch>
+  <arg name="robot_namespace" default="/"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find minesweeper_description)/urdf/minesweeper.urdf.xacro' --inorder"/>
+</launch>

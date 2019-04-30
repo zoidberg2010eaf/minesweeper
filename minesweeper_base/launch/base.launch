@@ -1,8 +1,12 @@
 <launch>
-    <node pkg="minesweeper_base" type="minesweeper_base_node" name="minesweeper_node" output="screen">
+  <arg name="port" default="/dev/input/js2"/>
+  <node pkg="minesweeper_base" type="minesweeper_base_node" name="minesweeper_node" output="screen">
         <rosparam subst_value="true">
             control_frequency: 10.0
         </rosparam>
-    </node>
-  <include file="$(find husky_control)/launch/control.launch" />
+  </node>
+  <include file="$(find minesweeper_control)/launch/control.launch" />
+  <include file="$(find minesweeper_control)/launch/teleop.launch">
+    <arg name="port" value="$(arg port)"/>
+  </include>
 </launch>

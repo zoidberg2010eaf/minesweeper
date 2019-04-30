@@ -1,3 +1,30 @@
-state:
+joint_state:
   type: "joint_state_controller/JointStateController"
   publish_rate: 50
+
+diff_drive:
+  type: "diff_drive_controller/DiffDriveController"
+  publish_rate: 50
+  left_wheel: ['front_left_wheel', 'rear_left_wheel']
+  right_wheel: ['front_right_wheel', 'rear_right_wheel']
+  pose_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+  twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.03]
+  wheel_separation_multiplier: 1.0
+  wheel_radius_multiplier: 1.0
+  enable_odom_tf: true
+  wheel_radius: 0.165
+  wheel_separation: 0.530
+  cmd_vel_timeout: 0.25
+  base_frame_id: base_link
+  linear:
+    x:
+      has_velocity_limits: true
+      max_velocity: 1.5
+      has_acceleration_limits: true
+      max_acceleration: 2.0
+  angular:
+    z:
+      has_velocity_limits: true
+      max_velocity: 2.8
+      has_acceleration_limits: true
+      max_acceleration: 5.6

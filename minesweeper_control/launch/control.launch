@@ -1,0 +1,11 @@
+<launch>
+  <include file="$(find minesweeper_description)/launch/description.launch"/>
+  <rosparam command="load" file="$(find minesweeper_control)/config/control.yaml"/>
+  <!--<rosparam command="load" file="$(find minesweeper_control)/config/gazebo_interface.yaml"/>-->
+  <node name="spawner" pkg="controller_manager" type="spawner" args="joint_state diff_drive"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+    <rosparam command="load" file="$(find minesweeper_control)/config/twist_mux.yaml" />
+    <remap from="cmd_vel_out" to="diff_drive/cmd_vel"/>
+  </node>
+</launch>

@@ -13,7 +13,7 @@
           </visual>
           <collision>
               <geometry>
-                  <cylinder radius="0.17" length="0.11"/>
+                  <cylinder radius="0.165" length="0.11"/>
               </geometry>
               <origin xyz="0.0 0.0 0.0" rpy="0 ${radians(90)} ${radians(90)}"/>
           </collision>
@@ -23,6 +23,13 @@
             <inertia ixx="9.0731E-05" ixy="4.2946E-13" ixz="-6.6251E-14" iyy="2.038E-07" iyz="1.3211E-06" izz="9.0527E-05"/>
           </inertial>
       </link>
+      <gazebo reference="${prefix}_wheel_link">
+  			<mu1 value="100.0"/>
+  			<mu2 value="50.0"/>
+  			<kp value="10000000.0" />
+  			<kd value="1.0" />
+  			<fdir1 value="1 0 0"/>
+  		</gazebo>
       <joint name="${prefix}_wheel" type="continuous">
           <parent link="base_link"/>
           <child link="${prefix}_wheel_link"/>

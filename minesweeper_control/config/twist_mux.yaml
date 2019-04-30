@@ -1,0 +1,12 @@
+topics:
+  -
+    name: xbox
+    topic: cmd_vel
+    timeout: 0.5
+    priority: 100
+locks:
+  -
+    name: emergency
+    topic: emergency
+    timeout: 0.0
+    priority: 255

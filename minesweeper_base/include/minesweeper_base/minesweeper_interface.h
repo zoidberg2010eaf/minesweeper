@@ -15,6 +15,7 @@
 #include <boost/chrono.hpp>
 #include <std_msgs/Float32.h>
 #include <std_msgs/Float32MultiArray.h>
+#include <control_toolbox/pid.h>
 
 #define PI 3.14159265359
 

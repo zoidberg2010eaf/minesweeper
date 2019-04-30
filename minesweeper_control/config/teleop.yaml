@@ -1,0 +1,5 @@
+teleop:
+  linear_speed_limit: 1.50
+  linear_speed_step: 0.10
+  angular_speed_limit: 2.8
+  angular_speed_step: 0.10

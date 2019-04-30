@@ -21,8 +21,17 @@ class Controller(object):
         self._r22 = 0.0
         self._l22 = 0.0
         self._profile_2_linear_axis = 0.0
+<<<<<<< HEAD
+        self._linear_speed_limit = rospy.get_param("teleop/linear_speed_limit", 1.50)
+        self._linear_speed_step = rospy.get_param("teleop/linear_speed_step", 0.10)
+        self._angular_speed_limit = rospy.get_param("teleop/angular_speed_limit", 1.00)
+        self._angular_speed_step = rospy.get_param("teleop/angular_speed_step", 0.05)
+        self._max_linear_speed = 1.0
+        self._max_angular_speed = 1.0
+=======
         self._max_linear_speed = 0.10
         self._max_angular_speed = 0.05
+>>>>>>> 30ccc816add486b2332f97b7cf030a488bb8f8ee
         self._dpad_y = 0.0
         self._dpad_x = 0.0
         self._inverted_right_stick_x = 1  # for profile 1
@@ -100,6 +109,29 @@ class Controller(object):
 
     def speed_limits(self):
         if self._dpad_y != 0.0:
+<<<<<<< HEAD
+            if self._linear_speed_step <= self._max_linear_speed <= self._linear_speed_limit:
+                if not self._linear_lock:
+                    self._max_linear_speed += self._dpad_y * self._linear_speed_step
+                    self._linear_lock = True
+            else:
+                if self._max_linear_speed > self._linear_speed_limit:
+                    self._max_linear_speed = self._linear_speed_limit
+                elif self._max_linear_speed < self._linear_speed_step:
+                    self._max_linear_speed = self._linear_speed_step
+        else:
+            self._linear_lock = False
+        if self._dpad_x != 0.0:
+            if self._angular_speed_step <= self._max_angular_speed <= self._angular_speed_limit:
+                if not self._angular_lock:
+                    self._max_angular_speed += self._dpad_x * self._angular_speed_step
+                    self._angular_lock = True
+            else:
+                if self._max_angular_speed > self._angular_speed_limit:
+                    self._max_angular_speed = self._angular_speed_limit
+                elif self._max_angular_speed < self._angular_speed_step:
+                    self._max_angular_speed = self._angular_speed_step
+=======
             if 0.10 <= self._max_linear_speed <= 1.50:
                 if not self._linear_lock:
                     self._max_linear_speed += self._dpad_y * 0.10
@@ -121,6 +153,7 @@ class Controller(object):
                     self._max_angular_speed = 1.00
                 elif self._max_angular_speed < 0.05:
                     self._max_angular_speed = 0.05
+>>>>>>> 30ccc816add486b2332f97b7cf030a488bb8f8ee
         else:
             self._angular_lock = False
 

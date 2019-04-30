@@ -1,8 +1,15 @@
 <launch>
   <arg name="port" default="/dev/input/js2"/>
+<<<<<<< HEAD
+  <rosparam command ="load" file="$(find minesweeper_control)/config/teleop.yaml" />
+=======
+>>>>>>> 30ccc816add486b2332f97b7cf030a488bb8f8ee
   <node name="xbox" pkg="minesweeper_control" type="joy_teleop.py"/>
   <node name="joy_node" pkg="joy" type="joy_node">
     <param name="dev" type="string" value="$(arg port)"/>
   </node>
+<<<<<<< HEAD
+=======
   <remap from="cmd_vel" to="diff_drive/cmd_vel"/>
+>>>>>>> 30ccc816add486b2332f97b7cf030a488bb8f8ee
 </launch>

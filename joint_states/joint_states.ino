@@ -14,7 +14,6 @@ double l_past_pos, r_past_pos;
 double l_vel, r_vel;
 bool lock = false;
 int l_sign = 1, r_sign = 1;
-int t, p_t;
 
 void SignCb(const std_msgs::Int8MultiArray &data){
   l_sign = data.data[0];
@@ -56,9 +55,7 @@ void loop() {
   }else{
     lock = false;
   }
-  p_t = t;
-  t = millis();
-  int interval = t - p_t;
+  double interval = 0.020;
   l_past_pos = l_pos;
   r_past_pos = r_pos;
   l_pos = ((double)l_ticks/maxTicks) * 2 * PI;
